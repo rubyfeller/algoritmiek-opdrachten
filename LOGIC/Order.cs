@@ -30,7 +30,6 @@ namespace SimpleAlgorithm
         {
             var list = product.GetProducts();
 
-            // Get average price of product the hard way
             double sum = 0;
             foreach (var item in list)
             {

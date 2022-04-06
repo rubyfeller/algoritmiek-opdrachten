@@ -10,6 +10,7 @@ namespace SimpleAlgorithm
     {
         public string Name { get; set; }
         public Double Price { get; set; }
+        
         public List<Product> GetProducts()
         {
             List<Product> products = new List<Product>();

@@ -14,7 +14,7 @@ foreach (var item in result)
 }
 
 List<Product> sortedList = order.SortProductsByPrice();
-Console.WriteLine("Sorted Products (lowest to highest):");
+Console.WriteLine("Sorted Products (highest to lowest):");
 foreach (var item in sortedList)
 {
     Console.WriteLine(item.Name);
