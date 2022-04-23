@@ -1,0 +1,12 @@
+C:\Users\rubyf\OneDrive - Office 365 Fontys\S2 Software\algoritmiek-opdrachten\algoritmiek-opdrachten\CircusTrein\CircusTrein.Logic\bin\Debug\net6.0\CircusTrein.Logic.deps.json
+C:\Users\rubyf\OneDrive - Office 365 Fontys\S2 Software\algoritmiek-opdrachten\algoritmiek-opdrachten\CircusTrein\CircusTrein.Logic\bin\Debug\net6.0\CircusTrein.Logic.dll
+C:\Users\rubyf\OneDrive - Office 365 Fontys\S2 Software\algoritmiek-opdrachten\algoritmiek-opdrachten\CircusTrein\CircusTrein.Logic\bin\Debug\net6.0\CircusTrein.Logic.pdb
+C:\Users\rubyf\OneDrive - Office 365 Fontys\S2 Software\algoritmiek-opdrachten\algoritmiek-opdrachten\CircusTrein\CircusTrein.Logic\obj\Debug\net6.0\CircusTrein.Logic.csproj.AssemblyReference.cache
+C:\Users\rubyf\OneDrive - Office 365 Fontys\S2 Software\algoritmiek-opdrachten\algoritmiek-opdrachten\CircusTrein\CircusTrein.Logic\obj\Debug\net6.0\CircusTrein.Logic.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\rubyf\OneDrive - Office 365 Fontys\S2 Software\algoritmiek-opdrachten\algoritmiek-opdrachten\CircusTrein\CircusTrein.Logic\obj\Debug\net6.0\CircusTrein.Logic.AssemblyInfoInputs.cache
+C:\Users\rubyf\OneDrive - Office 365 Fontys\S2 Software\algoritmiek-opdrachten\algoritmiek-opdrachten\CircusTrein\CircusTrein.Logic\obj\Debug\net6.0\CircusTrein.Logic.AssemblyInfo.cs
+C:\Users\rubyf\OneDrive - Office 365 Fontys\S2 Software\algoritmiek-opdrachten\algoritmiek-opdrachten\CircusTrein\CircusTrein.Logic\obj\Debug\net6.0\CircusTrein.Logic.csproj.CoreCompileInputs.cache
+C:\Users\rubyf\OneDrive - Office 365 Fontys\S2 Software\algoritmiek-opdrachten\algoritmiek-opdrachten\CircusTrein\CircusTrein.Logic\obj\Debug\net6.0\CircusTrein.Logic.dll
+C:\Users\rubyf\OneDrive - Office 365 Fontys\S2 Software\algoritmiek-opdrachten\algoritmiek-opdrachten\CircusTrein\CircusTrein.Logic\obj\Debug\net6.0\refint\CircusTrein.Logic.dll
+C:\Users\rubyf\OneDrive - Office 365 Fontys\S2 Software\algoritmiek-opdrachten\algoritmiek-opdrachten\CircusTrein\CircusTrein.Logic\obj\Debug\net6.0\CircusTrein.Logic.pdb
+C:\Users\rubyf\OneDrive - Office 365 Fontys\S2 Software\algoritmiek-opdrachten\algoritmiek-opdrachten\CircusTrein\CircusTrein.Logic\obj\Debug\net6.0\ref\CircusTrein.Logic.dll
