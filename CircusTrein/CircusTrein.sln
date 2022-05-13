@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32414.318
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CircusTrein.Presentation", "CircusTrein\CircusTrein.Presentation.csproj", "{9DDFE242-4D94-4653-BECA-F2DA010A0B26}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CircusTrein.Presentation", "CircusTrein\CircusTrein.Presentation.csproj", "{9DDFE242-4D94-4653-BECA-F2DA010A0B26}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CircusTrein.Logic", "CircusTrein.Logic\CircusTrein.Logic.csproj", "{B749447E-3422-426D-98D9-513F21218E0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CircusTrein.Logic", "CircusTrein.Logic\CircusTrein.Logic.csproj", "{B749447E-3422-426D-98D9-513F21218E0C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CircusTrein.UnitTests", "CircusTrein.UnitTests\CircusTrein.UnitTests.csproj", "{75AA5344-1590-434D-84CB-11B53917FE8C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{B749447E-3422-426D-98D9-513F21218E0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B749447E-3422-426D-98D9-513F21218E0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B749447E-3422-426D-98D9-513F21218E0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75AA5344-1590-434D-84CB-11B53917FE8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75AA5344-1590-434D-84CB-11B53917FE8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75AA5344-1590-434D-84CB-11B53917FE8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75AA5344-1590-434D-84CB-11B53917FE8C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

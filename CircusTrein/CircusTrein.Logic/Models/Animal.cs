@@ -1,19 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CircusTrein.Logic.Models
+﻿namespace CircusTrein.Logic.Models
 {
     // Base class
-    public abstract class Animal
+    public class Animal
     {
-        public Animal(int size)
+
+        public Animal(string name, int size, string diet)
         {
+            Name = name;
             Size = size;
+            Diet = diet;
         }
 
+        public string Name { get; set; }
         public int Size { get; set; }
+        public string Diet { get; set; }
     }
 }
