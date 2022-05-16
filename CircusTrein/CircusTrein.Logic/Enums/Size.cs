@@ -8,11 +8,5 @@
             Medium,
             Large
         }
-        public SizeEnum GenerateSize()
-        {
-            Random rnd = new Random();
-            int size = rnd.Next(0, 3);
-            return (SizeEnum)size;
-        }
     }
 }

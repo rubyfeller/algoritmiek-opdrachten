@@ -5,6 +5,8 @@
         public int animalPoints;
         public List<Carnivore> carnivores;
         public List<Herbivore> herbivores;
+        public List<Animal> animals = new List<Animal>();
+
 
         public int WagonNumber { get; internal set; }
 
@@ -12,17 +14,17 @@
         {
             carnivores = new List<Carnivore>();
             herbivores = new List<Herbivore>();
+            animals = new List<Animal>();
+
         }
 
-        public bool CheckSizeAndDiet(Carnivore carnivore)
+        public bool CheckSizeAndDiet(Animal animal)
         {
             // Check capacity and wether the animal is eatable
-            if (CheckCapacity(carnivore.Size) && !IsEatable(carnivore))
+            if (CheckCapacity(animal.Size) && IsEatable(animal))
             {
-                //Console.WriteLine("Size and diet are correct");
                 return true;
             }
-            //Console.WriteLine("Size or diet not correct");
             return false;
         }
 
@@ -31,68 +33,55 @@
             // Check capacity
             if (animalPoints + size <= 10)
             {
-                //Console.WriteLine("Capacity is correct");
                 return true;
             }
-            //Console.WriteLine("Capacity is not correct");
             return false;
         }
 
 
-        public bool IsEatable(Carnivore carnivore)
+        public bool IsEatable(Animal animal)
         {
-            foreach (Carnivore currCarnivore in carnivores)
+            foreach (Animal currAnimal in animals)
             {
-                if (carnivore.Diet == "Carnivore")
+                if (animal.Diet == "Herbivore")
                 {
                     // Animal size must be smaller or the same as the current animal in order to be eaten
-                    if (carnivore.Size <= currCarnivore.Size)
+                    if (animal.Size <= currAnimal.Size)
                     {
-                        //Console.WriteLine("Animal is eatable");
                         return true;
                     }
                 }
-                if (currCarnivore.Diet == "Carnivore")
+                if (animal.Diet == "Herbivore")
                 {
-                    if (currCarnivore.Size >= carnivore.Size)
+                    if (animal.Size >= animal.Size)
                     {
-                        //Console.WriteLine("Animal is eatable");
                         return true;
                     }
                 }
-                //foreach (Herbivore currHerbivore in herbivores)
-                //{
-                //    if (herbivore.Diet == "Herbivore")
-                //    {
-                //        // Animal size must be smaller or the same as the current animal in order to be eaten
-                //        if (currHerbivore.Size <= currCarnivore.Size)
-                //        {
-                //            //Console.WriteLine("Animal is eatable");
-                //            return true;
-                //        }
-                //    }
-                //    if (currHerbivore.Diet == "Herbivore")
-                //    {
-                //        if (herbivore.Size >= carnivore.Size)
-                //        {
-                //            //Console.WriteLine("Animal is eatable");
-                //            return true;
-                //        }
-                //    }
+                if (animal.Diet == "Carnivore")
+                {
+                    // Animal size must be smaller or the same as the current animal in order to be eaten
+                    if (animal.Size <= currAnimal.Size)
+                    {
+                        return true;
+                    }
+                }
+                if (animal.Diet == "Carnivore")
+                {
+                    if (animal.Size >= animal.Size)
+                    {
+                        return true;
+                    }
+                }
             }
             return false;
 
         }
 
-        public bool AddCarnivore(Carnivore newCarnivore)
+        public bool AddAnimal(Animal animal)
         {
-            animalPoints += newCarnivore.Size;
-            return true;
-        }
-
-        public bool AddHerbivore(Herbivore newHerbivore)
-        {
-            animalPoints += newHerbivore.Size;
+            animalPoints += animal.Size;
+            animals.Add(animal);
             return true;
         }
     }
