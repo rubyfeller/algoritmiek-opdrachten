@@ -3,19 +3,19 @@
     public class Wagon
     {
         public int animalPoints;
-        public List<Carnivore> carnivores;
-        public List<Herbivore> herbivores;
         public List<Animal> animals = new List<Animal>();
 
-
         public int WagonNumber { get; internal set; }
+        public int MaxCapacity { get; internal set; }
+        public int Capacity { get; internal set; }
+
 
         public Wagon()
         {
-            carnivores = new List<Carnivore>();
-            herbivores = new List<Herbivore>();
             animals = new List<Animal>();
-
+            WagonNumber = 0;
+            MaxCapacity = 10;
+            Capacity = 0;
         }
 
         public bool CheckSizeAndDiet(Animal animal)
@@ -23,16 +23,19 @@
             // Check capacity and wether the animal is eatable
             if (CheckCapacity(animal.Size) && IsEatable(animal))
             {
+                Capacity -= animal.Size;
                 return true;
             }
+            WagonNumber++;
             return false;
         }
 
         public bool CheckCapacity(int size)
         {
             // Check capacity
-            if (animalPoints + size <= 10)
+            if (animalPoints + size <= MaxCapacity)
             {
+                Capacity -= animalPoints + size;
                 return true;
             }
             return false;
@@ -81,6 +84,7 @@
         public bool AddAnimal(Animal animal)
         {
             animalPoints += animal.Size;
+            Capacity -= animalPoints;
             animals.Add(animal);
             return true;
         }

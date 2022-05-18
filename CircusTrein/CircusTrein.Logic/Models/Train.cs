@@ -37,7 +37,6 @@
                 else
                 {
                     Console.WriteLine("Animal can not be added to wagon");
-                    wagon.WagonNumber++;
                     wagon.AddAnimal(animal);
                     Console.WriteLine("Wagon" + wagon.WagonNumber + "Animal" + animal.Name);
                 }
