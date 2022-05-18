@@ -23,20 +23,47 @@ namespace CircusTrein.UnitTests
 
         // Todo: use enum to let this test pass
         [Fact]
-        public void CannotAddMinus()
+        public void CannotAddMinusTest()
         {
-            // Arrange
-            Animal animal = new Herbivore("Deer", -5, "Herbivore");
+            bool exception = false;
 
             // Act
-            _wagon.AddAnimal(animal);
-            
-            int expected = 0;
-            int actual = _wagon.animals.Count;
-            
+            try
+            {
+                Animal animal = new Herbivore("Deer", -5, "Herbivore");
+                _wagon.AddAnimal(animal);
+
+            }
+            catch (System.Exception)
+            {
+                exception = true;
+            }
+
             // Assert
-            Assert.Equal(expected, actual);
+            Assert.True(exception);
         }
+
+        [Fact]
+        public void CannotAddIncorrectSpeciesTest()
+        {
+            bool exception = false;
+
+            // Act
+            try
+            {
+                Animal animal = new Carnivore("Deer", 5, "Omnivore");
+                _wagon.AddAnimal(animal);
+
+            }
+            catch (System.Exception)
+            {
+                exception = true;
+            }
+
+            // Assert
+            Assert.True(exception);
+        }
+
         [Fact]
         public void LowerCapacityWhenAnimalAdddedTest()
         {

@@ -1,4 +1,6 @@
-﻿namespace CircusTrein.Logic.Models
+﻿using CircusTrein.Logic.Enums;
+
+namespace CircusTrein.Logic.Models
 {
     public class Train
     {
@@ -19,13 +21,13 @@
 
         public void AddAnimalsToWagon()
         {
-            Animals.Add(new Herbivore("Deer", 5, "Herbivore"));
-            Animals.Add(new Herbivore("Deer", 1, "Herbivore"));
-            Animals.Add(new Herbivore("Deer", 3, "Herbivore"));
-            Animals.Add(new Herbivore("Rabbits", 1, "Herbivore"));
-            Animals.Add(new Herbivore("Rabbits", 1, "Herbivore"));
-            Animals.Add(new Carnivore("Cat", 3, "Carnivore"));
-            Animals.Add(new Carnivore("Cat", 3, "Carnivore"));
+            Animals.Add(new Herbivore("Deer", (int)Size.SizeEnum.Large, "Herbivore"));
+            Animals.Add(new Herbivore("Deer", (int)Size.SizeEnum.Small, "Herbivore"));
+            Animals.Add(new Herbivore("Deer", (int)Size.SizeEnum.Medium, "Herbivore"));
+            Animals.Add(new Herbivore("Rabbits", (int)Size.SizeEnum.Small, "Herbivore"));
+            Animals.Add(new Herbivore("Rabbits", (int)Size.SizeEnum.Small, "Herbivore"));
+            Animals.Add(new Carnivore("Cat", (int)Size.SizeEnum.Medium, "Carnivore"));
+            Animals.Add(new Carnivore("Cat", (int)Size.SizeEnum.Medium, "Carnivore"));
 
             foreach (var animal in Animals)
             {

@@ -7,8 +7,23 @@
         public Animal(string name, int size, string diet)
         {
             Name = name;
-            Size = size;
-            Diet = diet;
+            if (size > 0)
+            {
+                Size = size;
+            }
+            else
+            {
+                throw new ArgumentException("Size must be greater than 0");
+            }
+
+            if (diet == "Carnivore" || diet == "Herbivore")
+            {
+                Diet = diet;
+            }
+            else
+            {
+                throw new ArgumentException("Diet must be carnivore or herbivore");
+            }
         }
 
         public string Name { get; set; }
