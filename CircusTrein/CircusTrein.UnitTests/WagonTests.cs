@@ -21,7 +21,6 @@ namespace CircusTrein.UnitTests
             Assert.Equal(10, _wagon.MaxCapacity);
         }
 
-        // Todo: use enum to let this test pass
         [Fact]
         public void CannotAddMinusTest()
         {
@@ -94,7 +93,7 @@ namespace CircusTrein.UnitTests
 
             foreach (Animal animal in animals)
             {
-                if (_wagon.CheckSizeAndDiet(animal) == true)
+                if (_wagon.CheckCapacity(animal.Size) == true)
                 {
                     _wagon.AddAnimal(animal);
                 }
@@ -109,7 +108,7 @@ namespace CircusTrein.UnitTests
         }
 
         [Fact]
-        public void CannotAddCarnivoreToHerbivoreTest()
+        public void CannotAddEqualCarnivoreToHerbivoreTest()
         {
             // Arrange
             List<Animal> animals = new List<Animal>();
@@ -131,7 +130,86 @@ namespace CircusTrein.UnitTests
             }
 
             // Assert
-            Assert.Equal(1, _wagon.WagonNumber);
+            Assert.Equal(2, _wagon.WagonNumber);
+        }
+
+        [Fact]
+        public void CannotAddBiggerCarnivoreToHerbivore()
+        {
+            // Arrange
+            List<Animal> animals = new List<Animal>();
+            animals.Add(new Herbivore("Deer", 1, "Herbivore"));
+
+            // Act
+            animals.Add(new Carnivore("Lion", 3, "Carnivore"));
+
+            foreach (Animal animal in animals)
+            {
+                if (_wagon.CheckSizeAndDiet(animal) == true)
+                {
+                    _wagon.AddAnimal(animal);
+                }
+                else
+                {
+                    _wagon.AddAnimal(animal);
+                }
+            }
+
+            // Assert
+            Assert.Equal(2, _wagon.WagonNumber);
+        }
+
+        [Fact]
+        public void CannotAddEqualCarnivores()
+        {
+            // Arrange
+            List<Animal> animals = new List<Animal>();
+            animals.Add(new Carnivore("Lion", 3, "Carnivore"));
+
+            // Act
+            animals.Add(new Carnivore("Lion", 3, "Carnivore"));
+
+            foreach (Animal animal in animals)
+            {
+                if (_wagon.CheckSizeAndDiet(animal) == true)
+                {
+                    _wagon.AddAnimal(animal);
+                }
+                else
+                {
+                    _wagon.AddAnimal(animal);
+                }
+            }
+
+            // Assert
+            Assert.Equal(2, _wagon.WagonNumber);
+        }
+        [Fact]
+        public void CannotAddSmallerCarnivoreToBiggerHerbivore()
+        {
+            // Arrange
+            List<Animal> animals = new List<Animal>();
+            animals.Add(new Carnivore("Lion", 3, "Carnivore"));
+
+            // Act
+            animals.Add(new Carnivore("Lion", 1, "Carnivore"));
+
+            _wagon.animals = animals;
+
+            foreach (Animal animal in animals)
+            {
+                if (_wagon.CheckSizeAndDiet(animal) == true)
+                {
+                    _wagon.AddAnimal(animal);
+                }
+                else
+                {
+                    _wagon.AddAnimal(animal);
+                }
+            }
+
+            // Assert
+            Assert.Equal(3, _wagon.WagonNumber);
         }
     }
 }

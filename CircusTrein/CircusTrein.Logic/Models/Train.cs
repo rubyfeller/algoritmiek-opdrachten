@@ -1,6 +1,4 @@
-﻿using CircusTrein.Logic.Enums;
-
-namespace CircusTrein.Logic.Models
+﻿namespace CircusTrein.Logic.Models
 {
     public class Train
     {
@@ -15,34 +13,111 @@ namespace CircusTrein.Logic.Models
 
         public List<Carnivore> Carnivores { get; }
         public List<Herbivore> Herbivores { get; }
-        public List<Animal> Animals { get; }
+        public List<Animal> Animals { get; set; }
         public List<Wagon> Wagons { get; }
         public Wagon wagon = new Wagon();
+        List<Animal> carnivores = new List<Animal>();
+        List<Animal> herbivores = new List<Animal>();
 
-        public void AddAnimalsToWagon()
+        public void AddAnimalsToWagon(List<Animal> animals)
         {
-            Animals.Add(new Herbivore("Deer", (int)Size.SizeEnum.Large, "Herbivore"));
-            Animals.Add(new Herbivore("Deer", (int)Size.SizeEnum.Small, "Herbivore"));
-            Animals.Add(new Herbivore("Deer", (int)Size.SizeEnum.Medium, "Herbivore"));
-            Animals.Add(new Herbivore("Rabbits", (int)Size.SizeEnum.Small, "Herbivore"));
-            Animals.Add(new Herbivore("Rabbits", (int)Size.SizeEnum.Small, "Herbivore"));
-            Animals.Add(new Carnivore("Cat", (int)Size.SizeEnum.Medium, "Carnivore"));
-            Animals.Add(new Carnivore("Cat", (int)Size.SizeEnum.Medium, "Carnivore"));
+            Animals = animals;
 
-            foreach (var animal in Animals)
+            FilterCarnivores();
+            FilterHerbivores();
+            AddAnimalsToTheWagon();
+            LoopThroughWagons();
+
+        }
+        public List<Animal> FilterCarnivores()
+        {
+            foreach (var Animal in Animals.ToList())
             {
-                if (wagon.CheckSizeAndDiet(animal) == true)
+                if (Animal.Diet == "Carnivore")
                 {
-                    Console.WriteLine("Wagon" + wagon.WagonNumber + "Animal" + animal.Name);
-                    wagon.AddAnimal(animal);
+                    carnivores.Add(Animal);
+                }
+            }
+            return carnivores;
+        }
+
+        public List<Animal> FilterHerbivores()
+        {
+            foreach (var Animal in Animals)
+            {
+                if (Animal.Diet == "Herbivore")
+                {
+                    herbivores.Add(Animal);
+                }
+            }
+            return herbivores;
+        }
+
+        public void AddAnimalsToTheWagon()
+        {
+            foreach (var carnivore in carnivores.ToList())
+            {
+                if (wagon.CheckSizeAndDiet(carnivore) == true)
+                {
+                    // if no wagon exists yet, add a new one
+                    if (Wagons.Count <= 0)
+                    {
+                        wagon = new Wagon();
+                        Wagons.Add(wagon);
+                        wagon.WagonNumber++;
+                        wagon.AddAnimal(carnivore);
+                    }
+                    else
+                    {
+                        wagon.AddAnimal(carnivore);
+                    }
+                    carnivores.Remove(carnivore);
                 }
                 else
                 {
-                    Console.WriteLine("Animal can not be added to wagon");
-                    wagon.AddAnimal(animal);
-                    Console.WriteLine("Wagon" + wagon.WagonNumber + "Animal" + animal.Name);
+                    wagon = new Wagon();
+                    Wagons.Add(wagon);
+                    wagon.WagonNumber++;
+                    wagon.AddAnimal(carnivore);
+                    carnivores.Remove(carnivore);
+
                 }
-                Wagons.Add(wagon);
+                foreach (var herbivore in herbivores.ToList())
+                {
+                    if (wagon.CheckSizeAndDiet(herbivore) == true)
+                    {
+                        if (Wagons.Count <= 0)
+                        {
+                            wagon = new Wagon();
+                            Wagons.Add(wagon);
+                            wagon.WagonNumber++;
+                            wagon.AddAnimal(herbivore);
+                        }
+                        else
+                        {
+                            wagon.AddAnimal(herbivore);
+
+                        }
+                        herbivores.Remove(herbivore);
+
+                    }
+                    else
+                    {
+                        wagon = new Wagon();
+                        Wagons.Add(wagon);
+                        wagon.WagonNumber++;
+                        wagon.AddAnimal(herbivore);
+                        herbivores.Remove(herbivore);
+
+                    }
+                }
+            }
+        }
+        public void LoopThroughWagons()
+        {
+            foreach (var wagon in Wagons)
+            {
+                Console.WriteLine(Wagons);
             }
         }
     }

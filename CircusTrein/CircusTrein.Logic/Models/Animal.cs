@@ -22,7 +22,7 @@
             }
             else
             {
-                throw new ArgumentException("Diet must be carnivore or herbivore");
+                throw new ArgumentException("Diet must be Carnivore or Herbivore");
             }
         }
 
