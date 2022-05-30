@@ -26,6 +26,7 @@
             FilterCarnivores();
             FilterHerbivores();
             AddAnimalsToTheWagon();
+            //AddAnimalsToTheWagenRefactored();
             LoopThroughWagons();
 
         }
@@ -52,6 +53,36 @@
             }
             return herbivores;
         }
+
+        //public void AddAnimalsToTheWagenRefactored()
+        //{
+        //    foreach (Animal animal in Animals.ToList())
+        //    {
+        //        if (wagon.CheckSizeAndDiet(animal) == true)
+        //        {
+        //            if (Wagons.Count == 0)
+        //            {
+        //                wagon = new Wagon();
+        //                Wagons.Add(wagon);
+        //                wagon.WagonNumber++;
+        //                wagon.AddAnimal(animal);
+        //            }
+        //            else
+        //            {
+        //                wagon.AddAnimal(animal);
+        //            }
+        //            //Animals.Remove(animal);
+        //        }
+        //        else
+        //        {
+        //            wagon = new Wagon();
+        //            Wagons.Add(wagon);
+        //            wagon.WagonNumber++;
+        //            wagon.AddAnimal(animal);
+        //            //Animals.Remove(animal);
+        //        }
+        //    }
+        //}
 
         public void AddAnimalsToTheWagon()
         {
@@ -115,6 +146,7 @@
         }
         public void LoopThroughWagons()
         {
+
             foreach (var wagon in Wagons)
             {
                 Console.WriteLine(Wagons);

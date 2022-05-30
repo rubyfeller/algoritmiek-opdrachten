@@ -11,19 +11,12 @@ namespace CircusTrein.Logic.Models
         public int MaxCapacity { get; internal set; }
         public int Capacity { get; internal set; }
 
-
         public Wagon()
         {
             animals = new List<Animal>();
             WagonNumber = 1;
             MaxCapacity = 10;
             Capacity = 10;
-        }
-
-        public List<Wagon> GetWagons()
-        {
-            Train train = new Train();
-            return train.Wagons;
         }
 
         public bool CheckSizeAndDiet(Animal animal)
@@ -63,9 +56,17 @@ namespace CircusTrein.Logic.Models
                 {
                     return false;
                 }
+                if (animal.Diet == "Herbivore" && animalInwagon.Diet == "Carnivore" && animal.Size <= animalInwagon.Size)
+                {
+                    return true;
+                }
                 if (animal.Size == animalInwagon.Size && animalInwagon.Diet == "Herbivore" && animal.Diet == "Herbivore")
                 {
                     return false;
+                }
+                if (animalInwagon.Size > animal.Size && animal.Diet == "Carnivore")
+                {
+                    return true;
                 }
                 if (animal.Size >= animalInwagon.Size)
                 {
@@ -107,6 +108,7 @@ namespace CircusTrein.Logic.Models
                 animals.Add(animal);
                 return true;
             }
+            Capacity -= animalPoints;
             WagonNumber++;
             return false;
         }
