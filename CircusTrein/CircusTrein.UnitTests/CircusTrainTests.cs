@@ -26,7 +26,7 @@ namespace CircusTrein.UnitTests
         {
             // Arrange
             var train = new Train();
-            
+
             // Assert
             Assert.Empty(train.Wagons);
         }
@@ -91,26 +91,6 @@ namespace CircusTrein.UnitTests
         }
 
         [Fact]
-        public void LowerCapacityWhenAnimalAdddedTestRefactored()
-        {
-            // Arrange
-            Train train = new Train();
-            List<Animal> animals = new List<Animal>();
-
-            animals.Add(new Herbivore("Deer", 5, "Herbivore"));
-
-            // Act
-            int currCapacity = _wagon.Capacity;
-            int animalSize = animals[0].Size;
-            int expectedNewCapacity = currCapacity - animalSize;
-
-            _wagon.AddAnimal(animals[0]);
-
-            // Assert
-            Assert.Equal(expectedNewCapacity, _wagon.Capacity);
-        }
-
-        [Fact]
         public void CannotAddAnimalsToFullWagon()
         {
             // Arrange
@@ -124,7 +104,7 @@ namespace CircusTrein.UnitTests
             animals.Add(new Carnivore("Lion", 1, "Carnivore"));
 
 
-            train.AddAnimalsToWagon(animals);
+            train.AddAnimals(animals);
             int wagonsAmount = train.Wagons.Count;
 
             // Assert
@@ -144,7 +124,7 @@ namespace CircusTrein.UnitTests
             animals.Add(new Carnivore("Lion", 5, "Carnivore"));
 
 
-            train.AddAnimalsToWagon(animals);
+            train.AddAnimals(animals);
             int wagonsAmount = train.Wagons.Count;
 
             // Assert
@@ -164,7 +144,7 @@ namespace CircusTrein.UnitTests
             animals.Add(new Carnivore("Lion", 3, "Carnivore"));
 
 
-            train.AddAnimalsToWagon(animals);
+            train.AddAnimals(animals);
             int wagonsAmount = train.Wagons.Count;
 
             // Assert
@@ -183,26 +163,7 @@ namespace CircusTrein.UnitTests
             // Act
             animals.Add(new Carnivore("Lion", 3, "Carnivore"));
 
-            train.AddAnimalsToWagon(animals);
-            int wagonsAmount = train.Wagons.Count;
-
-            // Assert
-            Assert.Equal(2, wagonsAmount);
-        }
-
-        [Fact]
-        public void CannotAddSmallerCarnivoreToBiggerHerbivoreRefactored()
-        {
-            // Arrange
-            Train train = new Train();
-            List<Animal> animals = new List<Animal>();
-
-            animals.Add(new Carnivore("Lion", 3, "Carnivore"));
-
-            // Act
-            animals.Add(new Carnivore("Lion", 1, "Carnivore"));
-
-            train.AddAnimalsToWagon(animals);
+            train.AddAnimals(animals);
             int wagonsAmount = train.Wagons.Count;
 
             // Assert

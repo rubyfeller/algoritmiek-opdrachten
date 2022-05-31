@@ -8,8 +8,8 @@ namespace CircusTrein.Logic.Models
         public List<Animal> animals = new List<Animal>();
         public Size size = new Size();
         public int WagonNumber { get; internal set; }
-        public int MaxCapacity { get; internal set; }
-        public int Capacity { get; internal set; }
+        public int MaxCapacity { get; private set; }
+        public int Capacity { get; private set; }
 
         public Wagon()
         {
@@ -77,25 +77,25 @@ namespace CircusTrein.Logic.Models
 
         }
 
-        public bool IsAnimalInWagonEatable(Animal animal)
-        {
-            foreach (var animalInwagon in animals)
-            {
-                if (animal.Size > animalInwagon.Size && animal.Diet == "Herbivore")
-                {
-                    return false;
-                }
-                if (animal.Size == animalInwagon.Size && animalInwagon.Diet == "Herbivore" && animal.Diet == "Herbivore")
-                {
-                    return false;
-                }
-                if (animal.Size >= animalInwagon.Size)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
+        //public bool IsAnimalInWagonEatable(Animal animal)
+        //{
+        //    foreach (var animalInwagon in animals)
+        //    {
+        //        if (animal.Size > animalInwagon.Size && animal.Diet == "Herbivore")
+        //        {
+        //            return false;
+        //        }
+        //        if (animal.Size == animalInwagon.Size && animalInwagon.Diet == "Herbivore" && animal.Diet == "Herbivore")
+        //        {
+        //            return false;
+        //        }
+        //        if (animal.Size >= animalInwagon.Size)
+        //        {
+        //            return true;
+        //        }
+        //    }
+        //    return false;
+        //}
 
         public bool AddAnimal(Animal animal)
         {

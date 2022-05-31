@@ -19,18 +19,16 @@
         List<Animal> carnivores = new List<Animal>();
         List<Animal> herbivores = new List<Animal>();
 
-        public void AddAnimalsToWagon(List<Animal> animals)
+        public void AddAnimals(List<Animal> animals)
         {
             Animals = animals;
 
-            FilterCarnivores();
-            FilterHerbivores();
+            carnivores = FilterCarnivores();
+            herbivores = FilterHerbivores();
             AddAnimalsToTheWagon();
-            //AddAnimalsToTheWagenRefactored();
-            LoopThroughWagons();
 
         }
-        public List<Animal> FilterCarnivores()
+        private List<Animal> FilterCarnivores()
         {
             foreach (var Animal in Animals.ToList())
             {
@@ -42,7 +40,7 @@
             return carnivores;
         }
 
-        public List<Animal> FilterHerbivores()
+        private List<Animal> FilterHerbivores()
         {
             foreach (var Animal in Animals)
             {
@@ -84,11 +82,11 @@
         //    }
         //}
 
-        public void AddAnimalsToTheWagon()
+        private void AddAnimalsToTheWagon()
         {
             foreach (var carnivore in carnivores.ToList())
             {
-                if (wagon.CheckSizeAndDiet(carnivore) == true)
+                if (wagon.CheckSizeAndDiet(carnivore))
                 {
                     // if no wagon exists yet, add a new one
                     if (Wagons.Count <= 0)
@@ -115,7 +113,7 @@
                 }
                 foreach (var herbivore in herbivores.ToList())
                 {
-                    if (wagon.CheckSizeAndDiet(herbivore) == true)
+                    if (wagon.CheckSizeAndDiet(herbivore))
                     {
                         if (Wagons.Count <= 0)
                         {
@@ -142,14 +140,6 @@
 
                     }
                 }
-            }
-        }
-        public void LoopThroughWagons()
-        {
-
-            foreach (var wagon in Wagons)
-            {
-                Console.WriteLine(Wagons);
             }
         }
     }
