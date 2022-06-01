@@ -32,7 +32,7 @@
         {
             foreach (var Animal in Animals.ToList())
             {
-                if (Animal.Diet == "Carnivore")
+                if (Animal.GetType() == typeof(Carnivore))
                 {
                     carnivores.Add(Animal);
                 }
@@ -44,43 +44,13 @@
         {
             foreach (var Animal in Animals)
             {
-                if (Animal.Diet == "Herbivore")
+                if (Animal.GetType() == typeof(Herbivore))
                 {
                     herbivores.Add(Animal);
                 }
             }
             return herbivores;
         }
-
-        //public void AddAnimalsToTheWagenRefactored()
-        //{
-        //    foreach (Animal animal in Animals.ToList())
-        //    {
-        //        if (wagon.CheckSizeAndDiet(animal) == true)
-        //        {
-        //            if (Wagons.Count == 0)
-        //            {
-        //                wagon = new Wagon();
-        //                Wagons.Add(wagon);
-        //                wagon.WagonNumber++;
-        //                wagon.AddAnimal(animal);
-        //            }
-        //            else
-        //            {
-        //                wagon.AddAnimal(animal);
-        //            }
-        //            //Animals.Remove(animal);
-        //        }
-        //        else
-        //        {
-        //            wagon = new Wagon();
-        //            Wagons.Add(wagon);
-        //            wagon.WagonNumber++;
-        //            wagon.AddAnimal(animal);
-        //            //Animals.Remove(animal);
-        //        }
-        //    }
-        //}
 
         private void AddAnimalsToTheWagon()
         {
