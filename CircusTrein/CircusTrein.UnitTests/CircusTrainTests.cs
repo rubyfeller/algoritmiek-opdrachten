@@ -14,24 +14,6 @@ namespace CircusTrein.UnitTests
         }
 
         [Fact]
-        public void WagonDefaultConstructionTest()
-        {
-            // Assert
-            Assert.NotNull(_wagon);
-            Assert.Equal(10, _wagon.MaxCapacity);
-        }
-
-        [Fact]
-        public void TrainDefaultConstructionAndIsNullTest()
-        {
-            // Arrange
-            var train = new Train();
-
-            // Assert
-            Assert.Empty(train.Wagons);
-        }
-
-        [Fact]
         public void CannotAddMinusTest()
         {
             bool exception = false;
@@ -71,23 +53,6 @@ namespace CircusTrein.UnitTests
 
             // Assert
             Assert.True(exception);
-        }
-
-        [Fact]
-        public void LowerCapacityWhenAnimalAdddedTest()
-        {
-            // Arrange
-            Animal animal = new Herbivore("Deer", 5, "Herbivore");
-
-            int currCapacity = _wagon.Capacity;
-            int animalSize = animal.Size;
-            int expectedNewCapacity = currCapacity - animalSize;
-
-            // Act
-            _wagon.AddAnimal(animal);
-
-            // Assert
-            Assert.Equal(expectedNewCapacity, _wagon.Capacity);
         }
 
         [Fact]
