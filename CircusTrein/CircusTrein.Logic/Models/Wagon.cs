@@ -5,26 +5,26 @@ namespace CircusTrein.Logic.Models
     public class Wagon
     {
         public int animalPoints;
-        public List<Animal> animals = new List<Animal>();
+        private List<Animal> Animals { get; }
         public Size size = new Size();
-        public int MaxCapacity { get; private set; }
-        public int Capacity { get; private set; }
+        public int MaxCapacity { get; }
+        private int Capacity { get; }
 
         public Wagon()
         {
-            animals = new List<Animal>();
+            Animals = new List<Animal>();
             MaxCapacity = 10;
             Capacity = 10;
         }
 
+        public IEnumerable<Animal> GetAnimals()
+        {
+            return Animals.AsEnumerable();
+        }
+
         public bool CheckSizeAndDiet(Animal animal)
         {
-            if (CheckCapacity(animal.Size) && !IsEatable(animal))
-            {
-                return true;
-            }
- 
-            return false;
+            return CheckCapacity(animal.Size) && !IsEatable(animal);
         }
 
         private bool CheckCapacity(int size)
@@ -39,9 +39,10 @@ namespace CircusTrein.Logic.Models
 
         private bool IsEatable(Animal animal)
         {
-            foreach (var animalInwagon in animals)
+            foreach (var animalInwagon in Animals)
             {
-                if (animal.GetType() == typeof(Herbivore) && animalInwagon.GetType() == typeof(Herbivore))
+                if (animal.GetType() == typeof(Herbivore) && animalInwagon.GetType() == typeof(Herbivore)
+                    && animal.Size <= animalInwagon.Size)
                 {
                     return false;
                 }
@@ -57,22 +58,20 @@ namespace CircusTrein.Logic.Models
                 {
                     return true;
                 }
-                if (animal.Size <= animalInwagon.Size && animal.GetType() == typeof(Herbivore))
-                {
-                    return false;
-                }
             }
 
             return false;
         }
 
-        public bool AddAnimal(Animal animal)
+        public bool AddAnimalToWagon(Animal animal)
         {
             bool animalIsEatable = IsEatable(animal);
-            if (animalIsEatable == false)
+            bool animalFits = CheckCapacity(animal.Size);
+
+            if (animalIsEatable == false && animalFits == true)
             {
                 animalPoints += animal.Size;
-                animals.Add(animal);
+                Animals.Add(animal);
                 return true;
             }
             return false;

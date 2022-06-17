@@ -26,8 +26,8 @@
             }
         }
 
-        public string Name { get; set; }
-        public int Size { get; set; }
-        public string Diet { get; set; }
+        public string Name { get; }
+        public int Size { get; }
+        public string Diet { get; }
     }
 }

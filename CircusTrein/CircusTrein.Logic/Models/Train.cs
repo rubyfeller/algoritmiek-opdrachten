@@ -2,24 +2,19 @@
 {
     public class Train
     {
-
-        public Train()
-        {
-            Carnivores = new List<Carnivore>();
-            Herbivores = new List<Herbivore>();
-            Animals = new List<Animal>();
-            Wagons = new List<Wagon>();
-        }
-
-        public List<Carnivore> Carnivores { get; }
-        public List<Herbivore> Herbivores { get; }
-        public List<Animal> Animals { get; set; }
+        private List<Animal> Animals { get; set; }
         public List<Wagon> Wagons { get; }
-        public Wagon wagon = new Wagon();
+
         readonly List<Animal> carnivores = new List<Animal>();
         readonly List<Animal> herbivores = new List<Animal>();
         List<Animal> sortedCarnivores = new List<Animal>();
         List<Animal> sortedHerbivores = new List<Animal>();
+
+        public Train()
+        {
+            Animals = new List<Animal>();
+            Wagons = new List<Wagon>();
+        }
 
         public void AddAnimals(List<Animal> animals)
         {
@@ -27,7 +22,7 @@
 
             sortedCarnivores = FilterCarnivores();
             sortedHerbivores = FilterHerbivores();
-            AddCarnivoresToWagon();
+            AddCarnivoresToWagons();
 
         }
 
@@ -53,58 +48,59 @@
                     herbivores.Add(Animal);
                 }
             }
-            sortedHerbivores = herbivores.OrderByDescending(x => x.Size).ToList();
-
+            sortedHerbivores = herbivores.OrderBy(x => x.Size).ToList();
             return sortedHerbivores;
         }
 
-        private void AddCarnivoresToWagon()
+        private void AddCarnivoresToWagons()
         {
-            foreach (var animal in sortedCarnivores.ToList())
+            Wagon wagon = new Wagon();
+            foreach (var currCarnivore in sortedCarnivores.ToList())
             {
-                if (wagon.CheckSizeAndDiet(animal))
+                if (wagon.CheckSizeAndDiet(currCarnivore))
                 {
                     // if no wagon exists yet, add a new one
-                    if (Wagons.Count <= 0)
+                    if (Wagons.ToList().Count <= 0)
                     {
                         wagon = new Wagon();
                         Wagons.Add(wagon);
-                        wagon.AddAnimal(animal);
+                        wagon.AddAnimalToWagon(currCarnivore);
                     }
                     else
                     {
-                        wagon.AddAnimal(animal);
+                        wagon.AddAnimalToWagon(currCarnivore);
                     }
-                    sortedCarnivores.Remove(animal);
                 }
                 else
                 {
                     wagon = new Wagon();
                     Wagons.Add(wagon);
-                    wagon.AddAnimal(animal);
-                    sortedCarnivores.Remove(animal);
+                    wagon.AddAnimalToWagon(currCarnivore);
 
                 }
             }
-            AddHerbivoresToWagon();
+            AddHerbivoresToWagons();
         }
-        private void AddHerbivoresToWagon()
+
+        public void AddHerbivoresToWagons()
         {
-            for (int i = 0; i < sortedHerbivores.Count; ++i)
+            foreach (var currHerbivore in sortedHerbivores.ToList())
             {
+                bool isAdded = false;
                 foreach (var currWagon in Wagons.ToList())
                 {
-                    if (currWagon.CheckSizeAndDiet(sortedHerbivores[i]))
+                    if (currWagon.CheckSizeAndDiet(currHerbivore) && isAdded == false)
                     {
-                        currWagon.AddAnimal(sortedHerbivores[i]);
-                        sortedHerbivores.Remove(sortedHerbivores[i]);
+                        currWagon.AddAnimalToWagon(currHerbivore);
+                        isAdded = true;
                     }
                 }
+                if (isAdded == false)
                 {
-                    wagon = new Wagon();
+                    Wagon wagon = new Wagon();
                     Wagons.Add(wagon);
-                    wagon.AddAnimal(sortedHerbivores[i]);
-                    sortedHerbivores.Remove((sortedHerbivores[i]));
+                    wagon.AddAnimalToWagon(currHerbivore);
+
                 }
             }
         }
