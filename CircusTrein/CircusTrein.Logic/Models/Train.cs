@@ -22,7 +22,11 @@
 
             sortedCarnivores = FilterCarnivores();
             sortedHerbivores = FilterHerbivores();
-            AddCarnivoresToWagons();
+
+            if (sortedCarnivores.Count > 0)
+            {
+                AddCarnivoresToWagons();
+            }
 
         }
 
@@ -30,7 +34,7 @@
         {
             foreach (var Animal in Animals.ToList())
             {
-                if (Animal.GetType() == typeof(Carnivore))
+                if (Animal.DoesAnimalEat())
                 {
                     carnivores.Add(Animal);
                 }
@@ -43,7 +47,7 @@
         {
             foreach (var Animal in Animals)
             {
-                if (Animal.GetType() == typeof(Herbivore))
+                if (Animal.DoesAnimalEat() == false)
                 {
                     herbivores.Add(Animal);
                 }
@@ -82,7 +86,7 @@
             AddHerbivoresToWagons();
         }
 
-        public void AddHerbivoresToWagons()
+        private void AddHerbivoresToWagons()
         {
             foreach (var currHerbivore in sortedHerbivores.ToList())
             {

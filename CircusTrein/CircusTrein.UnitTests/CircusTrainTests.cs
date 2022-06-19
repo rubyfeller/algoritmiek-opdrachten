@@ -38,6 +38,7 @@ namespace CircusTrein.UnitTests
         [Fact]
         public void TestCannotAddIncorrectSpecies()
         {
+            // Arrange
             bool exception = false;
 
             // Act
@@ -68,13 +69,15 @@ namespace CircusTrein.UnitTests
 
             train.AddAnimals(animals);
 
+            int capacity = train.Wagons[0].Capacity;
             int wagonsAmount = train.Wagons.Count;
-            int animalPoints = train.Wagons[0].animalPoints;
+            int animalPoints = train.Wagons[0].GetAnimalPoints();
 
             // Assert
             Assert.Equal(1, wagonsAmount);
             Assert.Equal(animals.Count, GetAnimalsInWagons(train.Wagons));
             Assert.Equal(1, animalPoints);
+            Assert.True(animalPoints <= capacity);
         }
 
         [Fact]

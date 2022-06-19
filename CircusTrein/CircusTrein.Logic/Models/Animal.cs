@@ -1,7 +1,7 @@
 ﻿namespace CircusTrein.Logic.Models
 {
     // Base class
-    public class Animal
+    public abstract class Animal
     {
 
         public Animal(string name, int size, string diet)
@@ -25,6 +25,8 @@
                 throw new ArgumentException("Diet must be Carnivore or Herbivore");
             }
         }
+
+        public abstract bool DoesAnimalEat();
 
         public string Name { get; }
         public int Size { get; }

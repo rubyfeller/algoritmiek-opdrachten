@@ -4,16 +4,14 @@ namespace CircusTrein.Logic.Models
 {
     public class Wagon
     {
-        public int animalPoints;
+        private int animalPoints;
+
         private List<Animal> Animals { get; }
-        public Size size = new Size();
-        public int MaxCapacity { get; }
-        private int Capacity { get; }
+        public int Capacity { get; }
 
         public Wagon()
         {
             Animals = new List<Animal>();
-            MaxCapacity = 10;
             Capacity = 10;
         }
 
@@ -22,9 +20,14 @@ namespace CircusTrein.Logic.Models
             return Animals.AsEnumerable();
         }
 
+        public int GetAnimalPoints()
+        {
+            return animalPoints;
+        }
+
         public bool CheckSizeAndDiet(Animal animal)
         {
-            return CheckCapacity(animal.Size) && !IsEatable(animal);
+            return CheckCapacity(animal.Size) && !IsEdible(animal);
         }
 
         private bool CheckCapacity(int size)
@@ -37,24 +40,30 @@ namespace CircusTrein.Logic.Models
             return false;
         }
 
-        private bool IsEatable(Animal animal)
+        private bool IsEdible(Animal animal)
         {
             foreach (var animalInwagon in Animals)
             {
-                if (animal.GetType() == typeof(Herbivore) && animalInwagon.GetType() == typeof(Herbivore)
+                if (animal.DoesAnimalEat() == false
+                    && animalInwagon.DoesAnimalEat() == false
                     && animal.Size <= animalInwagon.Size)
                 {
                     return false;
                 }
-                if (animalInwagon.GetType() == typeof(Carnivore) && animal.GetType() == typeof(Herbivore) && animal.Size <= animalInwagon.Size)
+                if (animalInwagon.DoesAnimalEat()
+                    && animal.DoesAnimalEat() == false
+                    && animal.Size <= animalInwagon.Size)
                 {
                     return true;
                 }
-                if (animal.GetType() == typeof(Herbivore) && animalInwagon.GetType() == typeof(Carnivore) && animal.Size > animalInwagon.Size)
+                if (animal.DoesAnimalEat() == false
+                    && animalInwagon.DoesAnimalEat() == true
+                    && animal.Size > animalInwagon.Size)
                 {
                     return false;
                 }
-                if (animal.Size <= animalInwagon.Size && animal.GetType() == typeof(Carnivore))
+                if (animal.Size <= animalInwagon.Size
+                    && animal.DoesAnimalEat())
                 {
                     return true;
                 }
@@ -65,10 +74,10 @@ namespace CircusTrein.Logic.Models
 
         public bool AddAnimalToWagon(Animal animal)
         {
-            bool animalIsEatable = IsEatable(animal);
+            bool animalIsEdible = IsEdible(animal);
             bool animalFits = CheckCapacity(animal.Size);
 
-            if (animalIsEatable == false && animalFits == true)
+            if (animalIsEdible == false && animalFits == true)
             {
                 animalPoints += animal.Size;
                 Animals.Add(animal);

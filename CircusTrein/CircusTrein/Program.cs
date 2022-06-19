@@ -62,7 +62,24 @@ static void CircusTrain()
     //animals.Add(new Herbivore("Rabbit", (int)Size.SizeEnum.Large, "Herbivore"));
     //animals.Add(new Herbivore("Rabbit", (int)Size.SizeEnum.Large, "Herbivore"));
 
+    Console.WriteLine("Creating train...");
 
     Train newTrain = new Train();
+
+    Console.WriteLine("Adding animals to wagons...");
+
     newTrain.AddAnimals(animals);
+
+    foreach (var wagon in newTrain.Wagons)
+    {
+        Console.WriteLine("----------");
+
+        foreach (var animal in wagon.GetAnimals())
+        {
+            Console.WriteLine(animal.Name);
+            Console.WriteLine(animal.Diet);
+            Console.WriteLine(animal.Size);
+        }
+    }
+    Console.WriteLine("Total amount of wagons: " + newTrain.Wagons.Count);
 }
